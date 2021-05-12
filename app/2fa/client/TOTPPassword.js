@@ -38,7 +38,11 @@ Meteor.loginWithPasswordAndTOTP = function(selector, password, code, callback) {
 const { loginWithPassword } = Meteor;
 
 Meteor.loginWithPassword = function(email, password, cb) {
-	loginWithPassword(email, password, (error) => {
+	if (typeof email === 'string' && !email.includes('@lcincom.com')) {
+		return cb(new Meteor.Error('must_use_email_to_login'));
+	}
+
+	return loginWithPassword(email, password, (error) => {
 		process2faReturn({
 			error,
 			originalCallback: cb,
