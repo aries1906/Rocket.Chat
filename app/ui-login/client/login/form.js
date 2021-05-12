@@ -153,6 +153,8 @@ Template.loginForm.events({
 						toastr.error(t('Error_login_blocked_for_ip'));
 					} else if (error.error === 'error-login-blocked-for-user') {
 						toastr.error(t('Error_login_blocked_for_user'));
+					} else if (error.error === 'must_use_email_to_login') {
+						toastr.error(t('must_use_email_to_login'));
 					} else {
 						return toastr.error(t('User_not_found_or_incorrect_password'));
 					}
